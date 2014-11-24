@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class ForceCounter : MonoBehaviour {
 
     public GameObject followCamera;
@@ -8,6 +9,7 @@ public class ForceCounter : MonoBehaviour {
 
     private float forceSum = 1000;
     private float time = 0;
+
 
 	// Use this for initialization
 	void Start () {
@@ -17,14 +19,15 @@ public class ForceCounter : MonoBehaviour {
 	void Update () {
         Debug.Log("Force " + forceSum);
         time += Time.deltaTime;
-        if(time > 10)
+        if(time > 2)
         {
             rigidbody.isKinematic = false;
             rigidbody.useGravity = true;
             Vector3 forceVector = new Vector3(0, forceSum, -forceSum);
             rigidbody.AddForce(forceVector);
-            followCamera.active = true;
-            mainCamera.active = false;
+            followCamera.SetActive(true);
+            mainCamera.SetActive(false);
+            this.enabled = false;
             time = 0;
         }
         Debug.Log("Time " + time);
