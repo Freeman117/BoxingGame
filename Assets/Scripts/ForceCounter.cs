@@ -3,13 +3,15 @@ using System.Collections;
 
 
 public class ForceCounter : MonoBehaviour {
-
-    public GameObject followCamera;
-    public GameObject mainCamera;
+    public float ForceMultiplier = 10;
 
     private float forceSum = 1000;
-    private float time = 0;
 
+    public float force
+    {
+        get { return forceSum; }
+        set { forceSum = value; }
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -17,24 +19,11 @@ public class ForceCounter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("Force " + forceSum);
-        time += Time.deltaTime;
-        if(time > 2)
-        {
-            rigidbody.isKinematic = false;
-            rigidbody.useGravity = true;
-            Vector3 forceVector = new Vector3(0, forceSum, -forceSum);
-            rigidbody.AddForce(forceVector);
-            followCamera.SetActive(true);
-            mainCamera.SetActive(false);
-            this.enabled = false;
-            time = 0;
-        }
-        Debug.Log("Time " + time);
 	}
 
 	void OnCollisionEnter(Collision collision)
 	{
-        forceSum += collision.relativeVelocity.magnitude * 100;
+        forceSum += collision.relativeVelocity.magnitude * ForceMultiplier;
+        Debug.Log("ForceSum " + forceSum);
 	}
 }
