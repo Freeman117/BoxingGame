@@ -33,8 +33,8 @@ public class Launcher : MonoBehaviour {
         rigidbody.isKinematic = false;
         rigidbody.useGravity = true;
 
-        Vector3 forceVector = new Vector3(0, forceCounter.force,
-            -forceCounter.force);
+        Vector3 forceVector = new Vector3(0, forceCounter.force*0.5f,
+            -forceCounter.force*2);
         rigidbody.AddForce(forceVector);
 
         followCamera.SetActive(true);

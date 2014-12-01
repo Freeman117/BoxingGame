@@ -5,7 +5,9 @@ using System.Collections;
 public class ForceCounter : MonoBehaviour {
     public float ForceMultiplier = 10;
 
-    private float forceSum = 1000;
+    public float StartForce = 0;
+
+    private float forceSum;
 
     public float force
     {
@@ -15,6 +17,7 @@ public class ForceCounter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        forceSum = StartForce;
 	}
 	
 	// Update is called once per frame
